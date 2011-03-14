@@ -1,0 +1,67 @@
+RailsClient is a Web Service client designed to work with RESTful Resources
+exposed by ActiveResource in a Ruby on Rails application.  It is being
+designed to allow the user to interact with the remote resources with a
+minimum amount of configuration and annotation of the resource model classes.
+
+Imagine you had a Ruby on Rails application hosted like this:
+
+$ rails new patientservice
+$ cd patientservice
+$ rails generate scaffold Patient name:string age:integer smoker:boolean
+$ rake db:migrate
+$ git init
+$ git add .
+$ git commit -am "Created patient web service"
+$ git add remote heroku git@heroku.com:patientservice.git
+$ heroku create patientservice
+$ git push heroku master
+$ heroku rake db:migrate
+
+And you wanted to interact with it from C#.  First create a matching model
+class:
+
+using RailsClient;
+
+public class Patient : RESTfulResource
+{
+  public string name;
+  public int age;
+  public bool smoker;
+}
+
+Then use it in your main program like this:
+
+using RailsClient;
+
+class Program
+{
+  public static void Main(string[] args)
+  {
+    // Configuration
+    RESTfulResourceBase.baseurl = "http://patientservice.heroku.com/";
+
+    // Creating a new resource
+    Patient patient = new Patient();
+    patient.name = "Test Patient";
+    patient.age = 28;
+    patient.smoker = false;
+    patient.save();
+
+    // Finding an existing resource by it's identity (id)
+    Patient patient = RESTfulFinder.find<Patient>("1");
+
+    // Updating an existing resource
+    patient.age = 29;
+    patient.save();
+
+    // Deleting an existing resource
+    patient.delete();
+  }
+}
+
+This assembly is still very much under development and is currently critically
+lacking in error handling, presentation of error messages, parsing arrays
+of resources, and following all of the Rails conventions for dealing with
+specific attributes such as "updated-at" and "created-at".  All contributions
+will be welcome and merged if beneficial.
+
