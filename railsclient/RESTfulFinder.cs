@@ -9,7 +9,7 @@ using RailsClient.ExtensionMethods;
 
 namespace RailsClient
 {
-    class RESTfulFinder
+    public class RESTfulFinder
     {
         public static T find<T>(string id)
         {
