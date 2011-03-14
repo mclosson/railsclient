@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "railsclient", "railsclient\railsclient.csproj", "{D82B8DBC-951E-4CF7-9B5F-8931C5E49CEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D82B8DBC-951E-4CF7-9B5F-8931C5E49CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D82B8DBC-951E-4CF7-9B5F-8931C5E49CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D82B8DBC-951E-4CF7-9B5F-8931C5E49CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D82B8DBC-951E-4CF7-9B5F-8931C5E49CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
