@@ -1,5 +1,0 @@
-c:\users\mclosson\documents\visual studio 2010\Projects\railsclient\railsclient\bin\Debug\railsclient.dll
-c:\users\mclosson\documents\visual studio 2010\Projects\railsclient\railsclient\bin\Debug\railsclient.pdb
-c:\users\mclosson\documents\visual studio 2010\Projects\railsclient\railsclient\obj\Debug\ResolveAssemblyReference.cache
-c:\users\mclosson\documents\visual studio 2010\Projects\railsclient\railsclient\obj\Debug\railsclient.dll
-c:\users\mclosson\documents\visual studio 2010\Projects\railsclient\railsclient\obj\Debug\railsclient.pdb

@@ -26,9 +26,9 @@
 *.sdf
 ipch/
 obj/
-[Bb]in
-[Dd]ebug*/
-[Rr]elease*/
+railsclient/[Bb]in
+railsclient/[Dd]ebug*/
+railsclient/[Rr]elease*/
 Ankh.NoLoad
 
 #Tooling
@@ -37,7 +37,7 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 
 #Project files
-[Bb]uild/
+railsclient/[Bb]uild/
 
 #Subversion files
 .svn
