@@ -43,9 +43,19 @@ namespace RailsClient
         {
             Type type = typeof(T);
             Type list = typeof(List<T>);
-            
+
+            Type[] extraTypes = new Type[1];
+            extraTypes[0] = typeof(T);
+
+            string defaultNamespace = "";
             string xmlroot = type.Name.ToString().Pluralize().ToLower();
             string ResourceCollectionURL = RESTfulResourceBase.baseurl + type.Name.ToString().ToLower().Pluralize() + ".xml";
+
+            XmlAttributes xmlAttributes = new XmlAttributes();
+            XmlTypeAttribute xmlTypeAttribute = new XmlTypeAttribute(type.ToString().ToLower());
+            XmlAttributeOverrides xmlAttributeOverrides = new XmlAttributeOverrides();
+            xmlAttributes.XmlType = xmlTypeAttribute;
+            xmlAttributeOverrides.Add(type, xmlAttributes);
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ResourceCollectionURL);
             HttpWebResponse response = null;
@@ -62,7 +72,7 @@ namespace RailsClient
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 Stream stream = response.GetResponseStream();
-                XmlSerializer serializer = new XmlSerializer(list, new XmlRootAttribute(xmlroot));
+                XmlSerializer serializer = new XmlSerializer(list, xmlAttributeOverrides, extraTypes, new XmlRootAttribute(xmlroot), defaultNamespace);
                 return (List<T>)serializer.Deserialize(stream);
             }
             //else if (response.StatusCode == HttpStatusCode.NotFound)
