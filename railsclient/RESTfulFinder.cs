@@ -38,5 +38,35 @@ namespace RailsClient
             //else if (response.StatusCode == HttpStatusCode.NotFound)
             throw new System.Exception("404 Resource does not exist");
         }
+
+        public static List<T> all<T>()
+        {
+            Type type = typeof(T);
+            Type list = typeof(List<T>);
+            
+            string xmlroot = type.Name.ToString().Pluralize().ToLower();
+            string ResourceCollectionURL = RESTfulResourceBase.baseurl + type.Name.ToString().ToLower().Pluralize() + ".xml";
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ResourceCollectionURL);
+            HttpWebResponse response = null;
+
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+            }
+            catch (WebException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                Stream stream = response.GetResponseStream();
+                XmlSerializer serializer = new XmlSerializer(list, new XmlRootAttribute(xmlroot));
+                return (List<T>)serializer.Deserialize(stream);
+            }
+            //else if (response.StatusCode == HttpStatusCode.NotFound)
+            throw new System.Exception("404 Resource does not exist");
+        }
     }
 }
