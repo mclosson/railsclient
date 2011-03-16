@@ -65,3 +65,6 @@ of resources, and following all of the Rails conventions for dealing with
 specific attributes such as "updated-at" and "created-at".  All contributions
 will be welcome and merged if beneficial.
 
+Here are some example applications that use railsclient as a backend:
+
+http://github.com/mclosson/WinFormsRailsClientDemo
