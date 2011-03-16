@@ -37,8 +37,12 @@ namespace RailsClient
             return baseurl + this.GetType().Name.ToString().ToLower().Pluralize() + ".xml";
         }
 
-        private void create()
+        public RESTfulResource create()
         {
+            Type type = this.GetType();
+            string xmlroot = type.Name.ToString().ToLower();
+            string ResourceURL = RESTfulResourceBase.baseurl + type.Name.ToString().ToLower().Pluralize() + "/" + id + ".xml";
+
             byte[] bytes = Encoding.UTF8.GetBytes(ToXml());
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(CollectionResourcePath());
             request.ContentType = "text/xml";
@@ -52,10 +56,13 @@ namespace RailsClient
             {
                 Stream stream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(stream);
+                XmlSerializer serializer = new XmlSerializer(type, new XmlRootAttribute(xmlroot));
+                return (RESTfulResource)serializer.Deserialize(stream);
                 // response.GetResponseHeader("location); contains the URL of the newly created resource
             }
             else // Unprocessible Entity (422)
             {
+                return null;
                 // display all the errors
             }
         }
